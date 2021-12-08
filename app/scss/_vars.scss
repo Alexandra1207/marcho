@@ -1,6 +1,7 @@
 $accent: #fe3e57;
 $default: #8D8D8D;
 $title: #29282D;
+$bg: #f6f6f6;
 
 %quicksand-400 {
   font-family: 'Quicksand-Regular', sans-serif;
@@ -20,4 +21,9 @@ $title: #29282D;
 %roboto-700 {
   font-family: 'Roboto-Bold', sans-serif;
   font-weight: 700;
+}
+
+.footer-top__social-link {
+  width: 30px;
+  height: 30px;
 }
