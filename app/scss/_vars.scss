@@ -33,3 +33,9 @@ $bg: #f6f6f6;
 }
 
 
+@function max($number...) {
+  @return m#{a}x(#{$numbers});
+}
+@function min($number...) {
+  @return m#{i}n(#{$numbers});
+}
