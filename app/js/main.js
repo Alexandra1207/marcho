@@ -1,5 +1,27 @@
 $(function () {
 
+  $('.blog-page__slider').slick({
+    prevArrow: '<button type="button" class="slick-prev"><svg xmlns="http://www.w3.org/2000/svg" width="9px" height="14px" viewBox="0 0 9 14" version="1.1"><g><path d="M 6.75 12.25 C 6.460938 12.25 6.175781 12.164062 5.953125 11.992188 L 0.328125 7.617188 C -0.109375 7.277344 -0.109375 6.722656 0.328125 6.382812 L 5.953125 2.007812 C 6.394531 1.664062 7.105469 1.664062 7.546875 2.007812 C 7.984375 2.347656 7.984375 2.902344 7.546875 3.242188 L 2.714844 7 L 7.546875 10.757812 C 7.984375 11.097656 7.984375 11.652344 7.546875 11.996094 C 7.328125 12.164062 7.039062 12.25 6.75 12.25 Z M 6.75 12.25 "/></g></svg></button>',
+    nextArrow: '<button type="button" class="slick-next"><svg xmlns="http://www.w3.org/2000/svg" width="8px" height="14px" viewBox="0 0 8 14" version="1.1"><g><path d="M 2 12.25 C 1.742188 12.25 1.488281 12.164062 1.292969 11.992188 C 0.902344 11.652344 0.902344 11.097656 1.292969 10.757812 L 5.585938 7 L 1.292969 3.242188 C 0.902344 2.902344 0.902344 2.347656 1.292969 2.003906 C 1.683594 1.664062 2.316406 1.664062 2.707031 2.003906 L 7.707031 6.378906 C 8.097656 6.722656 8.097656 7.277344 7.707031 7.617188 L 2.707031 11.992188 C 2.511719 12.164062 2.257812 12.25 2 12.25 Z M 2 12.25 "/></g></svg></button>',
+    infinite: false,
+  });
+
+  // отзывы tabs
+  $('.product-tabs__top-item').on('click', function(e) {
+    // отмена перехода по ссылке
+    e.preventDefault();   
+    $('.product-tabs__top-item').removeClass('product-tabs__top-item--active');
+    $(this).addClass('product-tabs__top-item--active');  
+
+    $('.product-tabs__content-item').removeClass('product-tabs__content-item--active');
+    $($(this).attr('href')).addClass('product-tabs__content-item--active');
+
+  })
+
+  $('.shop__filter-btn').on('click', function() {
+    $('.shop__filters').slideToggle();    
+  })
+
   $('.menu__btn').on('click', function() {
     $('.menu__list').toggleClass('menu__list--active');
   });
@@ -32,10 +54,12 @@ $(function () {
   });
 
   $('.button-list').on('click', function (){
-    $('.product-item').addClass('product-item--list')
+    $('.product-item').addClass('product-item--list');
+    $('.shop-content__inner').addClass('shop-content__nogrid');
   })
   $('.button-grid').on('click', function () {
-    $('.product-item').removeClass('product-item--list')
+    $('.product-item').removeClass('product-item--list');
+    $('.shop-content__inner').removeClass('shop-content__nogrid');
   })
 
   $('.select-style, .product-one__item-num').styler();
@@ -66,8 +90,10 @@ $(function () {
     starWidth: "17px",
     normalFill: "#ccccce",
     ratedFill: "#ffc35b",
-    readOnly: true
-  });
+    readOnly: true,
+    starSvg: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"     height="16px" viewBox="0 0 18 16" version="1.1" ><g id="surface1"><path style=" stroke:none;"d="M 11.914062 4.695312 L 16.402344 5.359375 C 16.773438 5.414062 17.085938 5.675781 17.207031 6.035156 C 17.324219 6.398438 17.226562 6.789062 16.960938 7.058594 L 13.703125 10.253906 L 14.472656 14.835938 C 14.535156 15.210938 14.382812 15.589844 14.070312 15.8125 C 13.757812 16.035156 13.351562 16.0625 13.015625 15.882812 L 9.003906 13.742188 L 4.992188 15.882812 C 4.65625 16.0625 4.246094 16.035156 3.9375 15.8125 C 3.628906 15.589844 3.472656 15.210938 3.539062 14.835938 L 4.304688 10.253906 L 1.050781 7.058594 C 0.78125 6.789062 0.683594 6.398438 0.804688 6.035156 C 0.921875 5.675781 1.230469 5.414062 1.605469 5.359375 L 6.09375 4.695312 L 8.105469 0.5625 C 8.273438 0.21875 8.621094 0 9.003906 0 C 9.386719 0 9.738281 0.21875 9.902344 0.5625 Z M 11.914062 4.695312"/></g></svg>'
+      });
+
   function getTimeRemaining(endtime) {
     const total = Date.parse(endtime) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
